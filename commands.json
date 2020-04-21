@@ -1,0 +1,36 @@
+{
+    "commands": [
+      {
+        "botcommand": "help",
+        "botmessage": " 🦉 PauSiber Go Bot Komutlar 🦉 \n /sayhi 👋🏻 \n /status 😶 \n /nice 👍🏻 \n /linux 🐧 \n /plan 🗓 \n /kaynak 📚 /google 💻"
+      },
+      {
+        "botcommand": "sayhi",
+        "botmessage": "Selam 🤗"
+      },
+      {
+        "botcommand": "status",
+        "botmessage": "I'm ok. 👍🏻"
+      },
+      {
+        "botcommand": "nice",
+        "botmessage": "Thank you bro 🥳"
+      },
+      {
+        "botcommand": "linux",
+        "botmessage": "https://gnulinux.pausiber.xyz/"
+      },
+      {
+        "botcommand": "plan",
+        "botmessage": "https://plan.pausiber.xyz/"
+      },
+      {
+        "botcommand": "kaynak",
+        "botmessage": "https://kaynak.pausiber.xyz/"
+      },
+      {
+        "botcommand": "google",
+        "botmessage": "Bunu Google'dan araştırabilirsin dostum 🙂"
+      }
+    ]
+}
