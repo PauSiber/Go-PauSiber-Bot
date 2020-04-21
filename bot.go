@@ -27,8 +27,8 @@ func main() {
 	defer jsonFile.Close()
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var commands Commands
-	json.Unmarshal(byteValue, &commands)
+	var jsonDATA JSONData
+	json.Unmarshal(byteValue, &jsonDATA)
 
 	for update := range updates {
 		if update.Message == nil {
@@ -42,13 +42,14 @@ func main() {
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
 		// Extract the command from the Message.
 		// https://apps.timwhitlock.info/emoji/tables/unicode
-		for i := 0; i < len(commands.Commands); i++ {
-			switch update.Message.Command() {
-			case commands.Commands[i].Botcommand:
-				msg.Text = commands.Commands[i].Botmessage
-			default:
-				msg.Text = "I don't know that command"
+
+		for _, command := range jsonDATA.Commands {
+			// TODO we need to use map, instead of using a loop.
+			if update.Message.Command() == command.Botcommand {
+				msg.Text = command.Botmessage
+				break
 			}
+			msg.Text = "I don't know that command"
 		}
 
 		if _, err := bot.Send(msg); err != nil {
