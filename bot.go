@@ -3,20 +3,28 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"io/ioutil"
 	"log"
 	"os"
+
+	t "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
+type JSONData struct {
+	Commands []struct {
+		Botcommand string `json:"botcommand"`
+		Botmessage string `json:"botmessage"`
+	} `json:"commands"`
+}
+
 func main() {
-	bot, err := tgbotapi.NewBotAPI("TOKEN")
+	bot, err := t.NewBotAPI("TOKEN")
 	checkErr(err)
 
 	bot.Debug = true
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	u := tgbotapi.NewUpdate(0)
+	u := t.NewUpdate(0)
 	u.Timeout = 60
 
 	updates, err := bot.GetUpdatesChan(u)
@@ -39,7 +47,7 @@ func main() {
 		}
 
 		// Create a new MessageConfig. We don't have text yet, so we should leave it empty.
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
+		msg := t.NewMessage(update.Message.Chat.ID, "")
 		// Extract the command from the Message.
 		// https://apps.timwhitlock.info/emoji/tables/unicode
 
